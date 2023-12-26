@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <meta name="theme-color" content="#eae1cd" />
+  <title>Poker | Cryptocity Poker Club</title>
+  <link rel="canonical" href="">
+  <meta name="description"
+    content="A classy online poker experience, true style, awaits you. No real money involved. Start playing texas hold'em poker today for free!" />
+  <meta name="keywords"
+    content="poker, online poker, texas holdem, texas hold'em, free online poker, free poker, social poker, social casino, casino, online casino, table games, classy poker, design, Poker">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,200&family=IBM+Plex+Mono:wght@400;500;600;700&family=Poppins:wght@100;200;400;500&family=Work+Sans:ital,wght@0,200;1,200&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Poker">
+  <meta property="og:image" content="">
+  <meta property="og:description"
+    content="A classy online poker experience, true  style, awaits you. No real money involved. Start playing texas hold'em poker today for free!">
+  <meta property="og:site_name" content="Poker">
+  <meta property="article:author" content="Patrick Obermeier">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="">
+  <meta name="twitter:title" content="Poker">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:creator" content="">
+  <meta name="twitter:description"
+    content="A classy online poker experience, true  style, awaits you. No real money involved. Start playing texas hold'em poker today for free!">
+  <meta name="twitter:image" content="">
+
+  <style>
+    :root {
+      box-sizing: border-box;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100%;
+    }
+
+    .loading-screen {
+      width: 100%;
+      padding: 0 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background-color: #181A26;
+    }
+
+    .loading-screen svg {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      display:inline-block;
+    }
+
+    .no-script {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .no-script img {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .no-script p {
+      font-size: 1.5rem;
+      font-family: 'Roboto', sans-serif;
+      color: hsl(36, 71%, 3%);
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem 2rem;
+      background-color: hsl(49, 63%, 92%);
+      border-radius: 2rem;
+    }
+
+    .custom-loader {
+      transform: scale(1);
+      animation: pulse 0.75s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.85);
+      }
+
+      70% {
+        transform: scale(1.25);
+      }
+
+      100% {
+        transform: scale(0.85);
+      }
+    }
+
+    #root,
+    #cookie-banner {
+      opacity: 0;
+      animation: fade-in 0.75s ease-out forwards;
+    }
+
+    @keyframes fade-in {
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loading-screen" id="loading-screen">
+    <svg version="1.1" id="L1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <circle fill="none" stroke="#fff" stroke-width="6" stroke-miterlimit="15" stroke-dasharray="14.2472,14.2472" cx="50"
+        cy="50" r="47">
+        <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="5s" from="0 50 50" to="360 50 50"
+          repeatCount="indefinite" />
+      </circle>
+      <circle fill="none" stroke="#fff" stroke-width="1" stroke-miterlimit="10" stroke-dasharray="10,10" cx="50" cy="50"
+        r="39">
+        <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="5s" from="0 50 50"
+          to="-360 50 50" repeatCount="indefinite" />
+      </circle>
+      <g fill="#fff">
+        <rect x="30" y="35" width="5" height="30">
+          <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5"
+            repeatCount="indefinite" begin="0.1" />
+        </rect>
+        <rect x="40" y="35" width="5" height="30">
+          <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5"
+            repeatCount="indefinite" begin="0.2" />
+        </rect>
+        <rect x="50" y="35" width="5" height="30">
+          <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5"
+            repeatCount="indefinite" begin="0.3" />
+        </rect>
+        <rect x="60" y="35" width="5" height="30">
+          <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5"
+            repeatCount="indefinite" begin="0.4" />
+        </rect>
+        <rect x="70" y="35" width="5" height="30">
+          <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5"
+            repeatCount="indefinite" begin="0.5" />
+        </rect>
+      </g>
+    </svg>
+  </div>
+  <div id="root" style="display: none;"></div>
+  <div id="cookie-banner" style="display: none;"></div>
+  <div id="modal"></div>
+  <script>
+    document.getElementById("custom-loader").style.display = "block";
+    document.getElementById("custom-loader-text").style.display = "block";
+  </script>
+</body>
+
+</html>
