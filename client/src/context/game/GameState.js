@@ -103,6 +103,7 @@ const GameState = ({ history, children }) => {
         tnRegisterName,
       });
     setJoined([]);
+    console.log(activeTab)
     if (activeTab === "cash") history.push("/");
     else if (activeTab === "tournament") history.push("/tournament");
   };
