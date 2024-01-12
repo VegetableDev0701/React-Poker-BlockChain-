@@ -205,6 +205,7 @@ const Play = ({ history }) => {
     check,
     call,
     raise,
+    // totalbet,
   } = useContext(gameContext);
   const { getLocalizedString } = useContext(contentContext);
   const { activeTab, nativeToken } = useContext(globalContext);
@@ -384,6 +385,7 @@ const Play = ({ history }) => {
                   <GameStateInfo
                     currentTable={currentTable}
                     nativeToken={nativeToken}
+
                   />
                 )}
             </>

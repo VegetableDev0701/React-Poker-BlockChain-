@@ -36,6 +36,7 @@ class Seat {
     this.stack -= reRaiseAmount;
     this.turn = false;
     this.lastAction = RAISE;
+    this.player.totalBet +=amount;
   }
   placeBlind(amount) {
     this.bet = amount;
@@ -50,12 +51,16 @@ class Seat {
     this.stack -= amountCalled;
     this.turn = false;
     this.lastAction = CALL;
+    this.player.totalBet = amount;
   }
   winHand(amount) {
     this.bet = 0;
     this.stack += amount;
     this.turn = false;
     this.lastAction = WINNER;
+  }
+  raiseBetAmount(amount) {
+    this.player.totalBet +=amount
   }
 }
 

@@ -24,7 +24,7 @@ const IconWrapper = styled.label`
   top: 0px;
 `;
 
-const ChipsAmountPill = ({ chipsAmount, nativeToken }) => {
+const ChipsAmountPill = ({ chipsAmount, nativeToken, totalBet }) => {
   const { activeTab } = useContext(globalContext);
 
   return (

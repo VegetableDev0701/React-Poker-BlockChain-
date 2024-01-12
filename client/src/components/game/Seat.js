@@ -104,7 +104,7 @@ export const Seat = ({ currentTable, seatNumber, isPlayerSeated, sitDown }) => {
       seat.sittingOut
     ) {
       if ((activeTab === "cash" && balance <= minBuyIn) || balance === 0) {
-        standUp();
+        standUp(true);
       } else if (
         (activeTab === "tournament" && chip <= minBuyIn) ||
         chip === 0
@@ -288,7 +288,10 @@ export const Seat = ({ currentTable, seatNumber, isPlayerSeated, sitDown }) => {
             bottom="-1.5rem"
             origin="top left"
           >
-            <ChipsAmountPill chipsAmount={seat.bet} nativeToken={nativeToken} />
+            {/* <ChipsAmountPill chipsAmount={seat.bet} nativeToken={nativeToken} totalBet={seat.player.totalBet}/> */}
+            <ChipsAmountPill chipsAmount={seat.bet} nativeToken={nativeToken} totalBet={seat.player.totalBet}/>
+            {/* { console.log("turning seat:"+JSON.stringify(seat,null,2))} */}
+            
             {!currentTable.handOver && seat.lastAction && (
               <InfoPill>{seat.lastAction}</InfoPill>
             )}

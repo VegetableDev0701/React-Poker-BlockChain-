@@ -15,6 +15,7 @@ const StyledShowPasswordButton = styled.div`
 `;
 
 const ShowPasswordButton = (props) => {
+  // console.log("props:",props.setShowPassword);
   const { showPassword, setShowPassword } = props;
   return (
     <StyledShowPasswordButton onClick={() => setShowPassword(!showPassword)}>

@@ -123,6 +123,7 @@ const init = (socket, io) => {
 
       if (found) {
         delete players[found.socketId];
+
         Object.values(tables).map((table) => {
           table.removePlayer(found.socketId);
           broadcastToTable(table);
@@ -139,7 +140,8 @@ const init = (socket, io) => {
         user._id,
         user.name,
         user.chipsAmount,
-        balanceData.balance
+        balanceData.balance,
+        // user.totalBet
       );
       const data = {
         tables: await getCurrentTables(),
@@ -246,6 +248,7 @@ const init = (socket, io) => {
     let res = table.handleRaise(socket.id, amount);
     res && broadcastToTable(table, res.message);
     res && changeTurnAndBroadcast(table, res.seatId);
+    res && broadcastToPayerBetUpdate(table, res.seatId, amount);
   });
 
   socket.on(TABLE_MESSAGE, ({ message, from, tableId }) => {
@@ -282,7 +285,7 @@ const init = (socket, io) => {
     broadcastToTable(table);
   });
 
-  socket.on(STAND_UP, ({ tableId, activeTab, tnRegisterName }) => {
+  socket.on(STAND_UP, ({ tableId, activeTab, tnRegisterName, chipLess }) => {
     const table = tables[tableId];
     if (table) {
       const player = players[socket.id];
@@ -295,8 +298,8 @@ const init = (socket, io) => {
         updatePlayerBankroll(player, seat.stack, activeTab, tnRegisterName);
         message = `${player.name} left the table`;
       }
-
-      table.standPlayer(socket.id);
+      console.log('standPlayer 2')
+      table.standPlayer(socket.id, chipLess);
 
       broadcastToTable(table, message);
       if (table.activePlayers().length === 1) {
@@ -412,6 +415,13 @@ const init = (socket, io) => {
         message,
         from,
       });
+    }
+  }
+
+  function broadcastToPayerBetUpdate(table, seatId, amount) {
+    for (let i =0; i< table.players.length; i++) {
+      let socketId = table.players[i]?.socketId;
+      // io.to(socketId).emit(PAYER_BET_UPDATED, { seatId, amount });
     }
   }
 

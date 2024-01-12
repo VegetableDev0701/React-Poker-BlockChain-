@@ -75,7 +75,7 @@ class Table {
     this.seats[seatId].stack += amount;
   }
 
-  standPlayer(socketId) {
+  standPlayer(socketId, chipLess) {
     for (let i of Object.keys(this.seats)) {
       if (this.seats[i] && this.seats[i].player.socketId === socketId) {
         this.seats[i] = null;
@@ -85,7 +85,8 @@ class Table {
     const satPlayers = Object.values(this.seats).filter((seat) => seat != null);
 
     if (satPlayers.length === 1) {
-      this.endWithoutShowdown();
+      console.log('here 2');
+      this.endWithoutShowdown(chipLess);
     }
 
     if (satPlayers.length === 0) {
@@ -183,6 +184,9 @@ class Table {
     this.seats[this.smallBlind].placeBlind(this.minBet);
     this.seats[this.bigBlind].placeBlind(this.minBet * 2);
 
+    this.seats[this.smallBlind].raiseBetAmount(this.minBet)
+    this.seats[this.bigBlind].raiseBetAmount(this.minBet*2)
+
     this.pot += this.minBet * 3;
     this.callAmount = this.minBet * 2;
     this.minRaise = this.minBet * 4;
@@ -222,9 +226,10 @@ class Table {
       }
     }
   }
-  endWithoutShowdown() {
+  endWithoutShowdown(chipLess = false) {
     const winner = this.unfoldedPlayers()[0];
-    winner && winner.winHand(this.pot);
+    console.log('here 1');
+    winner && chipLess && winner.winHand(this.pot);
     winner &&
       this.winMessages.push(
         `${winner.player.name} wins ${this.pot.toFixed(2)}`
@@ -345,6 +350,8 @@ class Table {
       (seat) => seat && !seat.folded && seat.bet > 0 && seat.stack === 0
     );
   }
+
+  // calculating Pot , 
   calculateSidePots() {
     const allInPlayers = this.playersAllInThisTurn();
     const unfoldedPlayers = this.unfoldedPlayers();
@@ -446,7 +453,7 @@ class Table {
       const seat = this.seats[winners[i][0]];
       const handDesc = winners[i][1];
       const winAmount = amount / winners.length;
-
+      
       seat.winHand(winAmount);
       if (winAmount > 0) {
         this.winMessages.push(
@@ -585,6 +592,7 @@ class Table {
       return null;
     }
   }
+  
 }
 
 module.exports = Table;

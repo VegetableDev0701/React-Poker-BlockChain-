@@ -2,6 +2,7 @@ import React from "react";
 import { BetSlider } from "./BetSlider";
 import { UIWrapper } from "./UIWrapper";
 import GameUIButton from "../buttons/GameUIButton";
+import { toast } from "react-toastify";
 
 export const GameUI = ({
   currentTable,
@@ -60,7 +61,8 @@ export const GameUI = ({
             )
           }
         >
-          POT 1.75$
+          Pot:
+          {currentTable.pot}
         </GameUIButton>
       </div>
       <div className="row">
@@ -124,18 +126,15 @@ export const GameUI = ({
           fill={false}
           radius="7px"
           onClick={check}
+          visible={
+            currentTable.callAmount === 0 ||
+            currentTable.seats[seatId].bet >= currentTable.callAmount
+          }
+          nameStr = "check"
         >
           Check
-        </GameUIButton>
-        <GameUIButton
-          width="33%"
-          height="48.03px"
-          fill={true}
-          radius="7px"
-          onClick={() => raise(bet + currentTable.seats[seatId].bet)}
-        >
-          Raise
-        </GameUIButton>
+        </GameUIButton> 
+        
         <GameUIButton
           width="33%"
           height="48.03px"
@@ -145,15 +144,39 @@ export const GameUI = ({
             currentTable.callAmount === 0 ||
             currentTable.seats[seatId].bet >= currentTable.callAmount
           }
+          visible={
+            currentTable.callAmount === 0 ||
+            currentTable.seats[seatId].bet >= currentTable.callAmount
+          }
+          nameStr = "call"
           onClick={call}
         >
           Call
+          {console.log(JSON.stringify(currentTable.seats[seatId], null, 2))}
           {currentTable.callAmount &&
           currentTable.seats[seatId].bet < currentTable.callAmount &&
           currentTable.callAmount <= currentTable.seats[seatId].stack
             ? currentTable.callAmount - currentTable.seats[seatId].bet
             : ""}
         </GameUIButton>
+        {/* {toast("pot = " + (currentTable.seats[seatId].stack + currentTable.seats[seatId].bet))} */}
+        
+        {/* {console.log("current="+currentTable.pot)} */}
+        
+
+        <GameUIButton
+          width="33%"
+          height="48.03px"
+          fill={true}
+          radius="7px"
+          display={currentTable.seats[seatId].stack > 0}
+          onClick={() => {
+            return raise(currentTable.seats[seatId].stack > bet ? bet + currentTable.seats[seatId].bet : currentTable.seats[seatId].stack + currentTable.seats[seatId].bet)}
+          }
+        >
+          Raise
+        </GameUIButton>
+       
       </div>
     </UIWrapper>
   );

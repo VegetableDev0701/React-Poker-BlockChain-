@@ -18,6 +18,7 @@ import authContext from "../auth/authContext";
 import socketContext from "../websocket/socketContext";
 import GameContext from "./gameContext";
 import globalContext from "../global/globalContext";
+import { toast } from "react-toastify";
 
 const GameState = ({ history, children }) => {
   const { socket } = useContext(socketContext);
@@ -47,6 +48,8 @@ const GameState = ({ history, children }) => {
 
   useEffect(() => {
     if (turn && !turnTimeOutHandle) {
+      //const handle = setTimeout(fold, 15000);
+      //Time is unlimited
       const handle = setTimeout(fold, 15000);
       setHandle(handle);
     } else {
@@ -103,7 +106,6 @@ const GameState = ({ history, children }) => {
         tnRegisterName,
       });
     setJoined([]);
-    console.log(activeTab)
     if (activeTab === "cash") history.push("/");
     else if (activeTab === "tournament") history.push("/tournament");
   };
@@ -124,13 +126,14 @@ const GameState = ({ history, children }) => {
     socket.emit(REBUY, { tableId, seatId, amount, activeTab, tnRegisterName });
   };
 
-  const standUp = () => {
+  const standUp = (flag = false) => {
     currentTableRef &&
       currentTableRef.current &&
       socket.emit(STAND_UP, {
         tableId: currentTableRef.current.id,
         activeTab,
         tnRegisterName,
+        chipLess: flag
       });
     setIsPlayerSeated(false);
     setSeatId(null);
@@ -153,7 +156,8 @@ const GameState = ({ history, children }) => {
   };
 
   const call = () => {
-    currentTableRef &&
+    // toast('123123');
+   currentTableRef &&
       currentTableRef.current &&
       socket.emit(CALL, currentTableRef.current.id);
   };

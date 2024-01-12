@@ -17,6 +17,10 @@ const GameUIButton = styled.button`
   line-height: normal;
   color: #fff;
   cursor: pointer;
+  display: ${(props) =>  {
+    if ( props.nameStr == 'call' && props.visible != false) return 'none' ;
+    if ( props.nameStr == 'check' && props.visible == false) return 'none' ;
+   }};
 `;
 
 export default GameUIButton;

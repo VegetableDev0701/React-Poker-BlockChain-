@@ -19,6 +19,8 @@ const INITIAL_STATE = {
   password: "",
 };
 
+
+
 const LoginPage = () => {
   const history = useHistory();
   const { login, isLoggedIn } = useContext(authContext);
@@ -33,7 +35,9 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   if (isLoggedIn) return <Redirect to="/" />;
+  // console.log("passflag:",setShowPassword);
   return (
+    
     <RelativeWrapper>
       <Container
         flexDirection="column"
